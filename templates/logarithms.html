@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Logarithms // LOGS{% endblock %}
+
+{% block content %}
+<section class="content-section">
+    <h1>02 // LOGARITHMS: THE INVERSE OPERATION</h1>
+    <p>Logarithms are the inverse of exponential functions. They answer the question: **"To what power must the base be raised to get a certain number?"** They are essential for solving equations where the variable is in the exponent.</p>
+    
+    <h2>LOG/EXPONENTIAL EQUIVALENCE</h2>
+    <p>The core relationship that defines a logarithm is the ability to switch between exponential and logarithmic form. This is your primary tool for solving these functions.</p>
+    <div class="math-block">
+        <h3>EQUIVALENCE</h3>
+        $$\text{If } b^x = y, \text{ then } \log_b(y) = x$$
+        <p>Where $b$ is the base ($b > 0$ and $b \neq 1$), $x$ is the exponent/logarithm, and $y$ is the argument.</p>
+    </div>
+    
+    
+    <h2>KEY PROPERTIES (THE LAWS OF LOGS)</h2>
+    <p>Logarithms have three fundamental rules derived from the laws of exponents. These are used to expand or condense logarithmic expressions.</p>
+
+    <div class="math-block">
+        <h3>1. PRODUCT RULE (Addition)</h3>
+        $$\log_b(xy) = \log_b(x) + \log_b(y)$$
+        <h3>2. QUOTIENT RULE (Subtraction)</h3>
+        $$\log_b\left(\frac{x}{y}\right) = \log_b(x) - \log_b(y)$$
+        <h3>3. POWER RULE (Multiplication)</h3>
+        $$\log_b(x^p) = p \cdot \log_b(x)$$
+    </div>
+    
+    <h2>COMMON LOGS</h2>
+    <p>We typically work with two special bases:</p>
+    <ul>
+        <li><strong>Common Log:</strong> Base 10 ($\log_{10}(x)$ or just $\log(x)$). Used in science and engineering.</li>
+        <li><strong>Natural Log:</strong> Base $e$ ($\log_e(x)$ or $\ln(x)$). Used extensively in calculus and financial modeling. The constant $e \approx 2.718$.</li>
+    </ul>
+
+    <div class="math-block">
+        <h3>CHANGE OF BASE FORMULA</h3>
+        <p>To calculate a logarithm with an unfamiliar base using a standard calculator:</p>
+        $$\log_b(x) = \frac{\log(x)}{\log(b)}$$
+    </div>
+
+    <a href="{{ url_for('polynomials') }}" class="cta-button" style="margin-top: 20px;">NEXT MODULE: POLYNOMIALS</a>
+</section>
+{% endblock %}

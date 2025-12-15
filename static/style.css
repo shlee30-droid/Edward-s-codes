@@ -1,0 +1,142 @@
+/* static/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+
+:root {
+    /* Define the color palette inspired by the LN4 brand */
+    --color-dark: #111112; /* Nearly black */
+    --color-electric: #D2FF00; /* Neon yellow/lime */
+    --color-light: #f4f4f4;
+    --font-primary: 'Roboto Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* --- Header & Navigation --- */
+header {
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixed navigation */
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-electric);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.nav-links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 1em;
+    margin-left: 30px;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-electric);
+}
+
+
+/* --- Main Content Layout --- */
+main {
+    padding-top: 60px; /* Offset for fixed header */
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 5%;
+}
+
+/* --- Hero Section Specific Styles --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 6em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-light);
+    position: relative;
+    z-index: 2;
+}
+
+.hero p {
+    font-size: 1.5em;
+    color: var(--color-electric);
+    margin-top: 15px;
+    letter-spacing: 3px;
+    z-index: 2;
+}
+
+.hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20vw; /* Huge text in background */
+    color: rgba(255, 255, 255, 0.03); /* Very transparent */
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cta-button {
+    background-color: var(--color-electric);
+    color: var(--color-dark);
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background-color 0.3s;
+    z-index: 2;
+}
+
+.cta-button:hover {
+    background-color: var(--color-light);
+}
+
+
+/* --- Content Specifics (for equations and blocks) --- */
+.math-block {
+    background-color: #2c3e50;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid var(--color-electric);
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+.math-block h3 {
+    color: var(--color-electric);
+    margin-top: 0;
+}
