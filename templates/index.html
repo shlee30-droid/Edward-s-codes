@@ -1,42 +1,143 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Calculus Interactive Lessons</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0 auto; max-width: 900px; padding: 20px; background-color: #f4f4f9; }
+        header { background: #34495e; color: white; padding: 10px 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2, h3 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        .quiz-question { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .submit-btn { background-color: #2ecc71; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s; }
+        .submit-btn:hover { background-color: #27ad60; }
+        .result-message { margin-top: 20px; padding: 15px; border-radius: 5px; font-weight: bold; display: none; }
+        .success { background-color: #e6ffe6; color: #008000; border: 1px solid #008000; }
+        .error { background-color: #ffe6e6; color: #ff0000; border: 1px solid #ff0000; }
+        
+        /* Table of Contents Styling */
+        nav ul { list-style: none; padding: 0; display: flex; justify-content: space-around; background-color: #ecf0f1; padding: 10px; border-radius: 5px; margin-bottom: 20px;}
+        nav ul li a { text-decoration: none; color: #34495e; font-weight: bold; padding: 5px 10px; border-radius: 3px;}
+        nav ul li a:hover { background-color: #bdc3c7; }
+    </style>
+</head>
+<body>
 
-{% block title %}Complex Numbers // i-NUMBERS{% endblock %}
+    <header>
+        <h1>Pre-Calculus Interactive Learning Hub</h1>
+        <p>Master Vectors and Systems of Equations</p>
+    </header>
 
-{% block content %}
-<section class="content-section">
-    <h1>01 // COMPLEX NUMBERS: i-UNIT</h1>
-    <p>Algebra II introduces the **imaginary unit, $i$**, which allows us to solve quadratic equations that have no real solutions. This expands our number system into the **Complex Plane**.</p>
-    
-    <h2>THE IMAGINARY UNIT $i$</h2>
-    <p>The unit is defined as the square root of negative one:</p>
-    <div class="math-block">
-        <h3>DEFINITION</h3>
-        $$i = \sqrt{-1}$$
-        $$i^2 = -1$$
-    </div>
-    
+    <nav>
+        <ul>
+            <li><a href="#vectors-lesson">Vectors</a></li>
+            <li><a href="#systems-lesson">Systems of Equations</a></li>
+            <li><a href="#quiz">Practice Quiz</a></li>
+        </ul>
+    </nav>
 
-[Image of the complex number plane]
+    <section id="vectors-lesson">
+        <h2>📐 Introduction to Vectors</h2>
+        <p>A vector is an object that has both **magnitude** (length) and **direction**. It is often represented by a directed line segment.</p>
+        <p>When you add vectors, the result is the head of the second vector connecting to the tail of the first. This is graphically visualized using the parallelogram rule or the triangle rule.</p>
+        
+
+        <h3>Dot Product</h3>
+        <p>The dot product of two vectors $\mathbf{a} = \langle a_1, a_2 \rangle$ and $\mathbf{b} = \langle b_1, b_2 \rangle$ is defined as:</p>
+        $$ \mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 $$
+    </section>
+
+    <section id="systems-lesson">
+        <h2>🔢 Systems of Equations</h2>
+        <p>A system of linear equations is a collection of two or more linear equations involving the same set of variables. We typically solve them using **Substitution** or **Elimination**.</p>
+        
+        <h3>Matrix Methods</h3>
+        <p>For larger systems, we use **Augmented Matrices** and perform **Gaussian Elimination** (Row Echelon Form) to systematically find the solution.</p>
+        
+        <p>The goal is to transform the augmented matrix into an upper triangular form to easily back-substitute the values.</p>
+    </section>
+
+    <section id="quiz">
+        <h2>📝 Practice Quiz</h2>
+        <form id="quiz-form">
+            <div class="quiz-question">
+                <p><strong>Q1:</strong> Which of the following best describes the result of the dot product of two vectors?</p>
+                <label><input type="radio" name="q1_vector_dot" value="A"> A. A new vector.</label><br>
+                <label><input type="radio" name="q1_vector_dot" value="B"> B. A scalar (number).</label><br>
+                <label><input type="radio" name="q1_vector_dot" value="C"> C. A matrix.</label><br>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>Q2:</strong> A system of linear equations with no solution is called:</p>
+                <label><input type="radio" name="q2_system_type" value="A"> A. Consistent.</label><br>
+                <label><input type="radio" name="q2_system_type" value="B"> B. Dependent.</label><br>
+                <label><input type="radio" name="q2_system_type" value="C"> C. Inconsistent.</label><br>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Quiz and Get Feedback</button>
+        </form>
+
+        <div id="result-message" class="result-message"></div>
+    </section>
+
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the default form submission
+
+            const form = event.target;
+            const data = {};
+            const formData = new FormData(form);
+
+            // 1. Collect all answers into a JavaScript object
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            const messageElement = document.getElementById('result-message');
+            messageElement.style.display = 'none';
+
+            // 2. Use the Fetch API to send data to the Python back-end
+            fetch('/submit_quiz', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                // Check if the server response was OK
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 3. Handle success response from the Python server
+                console.log('Success:', data);
+                messageElement.className = 'result-message success';
+                messageElement.innerHTML = `Quiz submitted successfully! **${data.message}** (You should receive an email confirmation soon.)`;
+                messageElement.style.display = 'block';
+                
+                // Optional: Provide instant feedback to the user on correctness
+                // In a real app, you'd calculate the score here.
+                // For Q1: B is correct. For Q2: C is correct.
+                let score = 0;
+                if (data['q1_vector_dot'] === 'B') score++;
+                if (data['q2_system_type'] === 'C') score++;
+                
+                messageElement.innerHTML += `<br>Your score: ${score} out of 2.`;
 
 
-    <h2>THE COMPLEX NUMBER FORM</h2>
-    <p>A complex number $z$ is written in the form $a + bi$, where $a$ is the **real** part and $bi$ is the **imaginary** part.</p>
-
-    <div class="math-block">
-        <h3>EXAMPLE: ADDITION</h3>
-        $$(4 + 2i) + (1 - 7i)$$
-        $$(4 + 1) + (2i - 7i)$$
-        $$5 - 5i$$
-    </div>
-
-    <h2>POWERS OF $i$ (THE CYCLE)</h2>
-    <p>The powers of $i$ follow a repeating cycle of four values:</p>
-    <div class="math-block">
-        $i^1 = i$ <br>
-        $i^2 = -1$ <br>
-        $i^3 = -i$ <br>
-        $i^4 = 1$ 
-    </div>
-    <a href="{{ url_for('logarithms') }}" class="cta-button" style="margin-top: 20px;">NEXT MODULE: LOGARITHMS</a>
-</section>
-{% endblock %}
+            })
+            .catch(error => {
+                // 4. Handle any errors (network, server issue, etc.)
+                console.error('Error:', error);
+                messageElement.className = 'result-message error';
+                messageElement.innerHTML = `Submission failed. Please check the console for details. Error: ${error.message}`;
+                messageElement.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
