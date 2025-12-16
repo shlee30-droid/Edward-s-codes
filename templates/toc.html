@@ -1,0 +1,23 @@
+<!-- templates/toc.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="{{ url_for('vectors') }}">Vectors</a>
+            <ul>
+                <li>Definition and notation</li>
+                <li>Vector operations</li>
+                <li>Applications</li>
+            </ul>
+        </li>
+        <li><a href="{{ url_for('systems') }}">Systems of Equations</a>
+            <ul>
+                <li>2×2 systems</li>
+                <li>3×3 systems</li>
+                <li>Applications</li>
+            </ul>
+        </li>
+        <li><a href="{{ url_for('quiz') }}">Practice Quiz</a></li>
+    </ul>
+{% endblock %}

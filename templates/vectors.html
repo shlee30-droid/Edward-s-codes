@@ -1,0 +1,34 @@
+<!-- templates/vectors.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Vectors</h2>
+
+    <h3>Definition</h3>
+    <p>A vector is a quantity with both magnitude and direction. In 2D, a vector \(\vec{v}\) can be written as:</p>
+    <p>\[
+        \vec{v} = \begin{pmatrix} a \\ b \end{pmatrix} = a\,\hat{\imath} + b\,\hat{\jmath}
+    \]</p>
+
+    <h3>Magnitude</h3>
+    <p>The magnitude of \(\vec{v} = \langle a, b \rangle\) is:</p>
+    <p>\[
+        \|\vec{v}\| = \sqrt{a^2 + b^2}
+    \]</p>
+
+    <h3>Vector Operations</h3>
+    <p>Addition:</p>
+    <p>\[
+        \vec{u} + \vec{v} = \langle u_1 + v_1, u_2 + v_2 \rangle
+    \]</p>
+    <p>Scalar multiplication:</p>
+    <p>\[
+        k\,\vec{v} = \langle k\,a, k\,b \rangle
+    \]</p>
+
+    <h3>Dot Product</h3>
+    <p>The dot product of \(\vec{u} = \langle u_1, u_2 \rangle\) and \(\vec{v} = \langle v_1, v_2 \rangle\) is:</p>
+    <p>\[
+        \vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2
+    \]</p>
+{% endblock %}
