@@ -10,18 +10,16 @@
         {% endif %}
     {% endwith %}
 
+    {% if score is not none and total_questions is not none %}
+        <div class="quiz-container">
+            <h3>Your Result</h3>
+            <p>You scored {{ score }} out of {{ total_questions }}.</p>
+        </div>
+    {% endif %}
+
     <h2>Pre‑Calculus Practice Quiz</h2>
 
     <form id="quizForm" action="{{ url_for('submit_quiz') }}" method="POST">
-        <div class="quiz-container">
-            <h3>Personal Information</h3>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
         <div class="quiz-container">
             <h3>Quiz Questions</h3>
 

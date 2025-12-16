@@ -1,20 +1,8 @@
 # app.py
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mail import Mail, Message
-import os
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-here'  # change this in production
-
-# Configure mail (example using Gmail)
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'shlee110115@gmail.com'      # your email
-app.config['MAIL_PASSWORD'] = 'Shsjkeum768#$'    # app password, not regular password
-app.config['MAIL_DEFAULT_SENDER'] = 'shlee110115@gmail.com'
-
-mail = Mail(app)
+app.secret_key = 'your-secret-key-here'  # keep this
 
 @app.route('/')
 def home():
@@ -32,38 +20,33 @@ def vectors():
 def systems():
     return render_template('systems.html')
 
-@app.route('/quiz')
+@app.route('/quiz', methods=['GET'])
 def quiz():
-    return render_template('quiz.html')
+    # When first loading the quiz, score and total_questions are None
+    return render_template('quiz.html', score=None, total_questions=None)
 
 @app.route('/submit_quiz', methods=['POST'])
 def submit_quiz():
-    # Get form data
-    name = request.form.get('name', 'Anonymous')
-    email = request.form.get('email', '')
-    answers = {}
-    for key in request.form:
-        if key.startswith('q'):
-            answers[key] = request.form[key]
+    # Correct answers (match the "value" attributes in your HTML)
+    correct_answers = {
+        'q1': '5',          # magnitude of <3,4> is 5
+        'q2': '1',          # u·v = 1·3 + 2·(-1) = 1
+        'q3': '2',          # solution gives x = 2
+        'q4': '(1,2,3)'     # system solution
+    }
 
-    # Build email body
-    body = f"Quiz submitted by:\nName: {name}\nEmail: {email}\n\nAnswers:\n"
-    for q, ans in answers.items():
-        body += f"{q}: {ans}\n"
+    score = 0
+    total_questions = len(correct_answers)
 
-    # Send email
-    try:
-        msg = Message(
-            subject="Pre‑Calculus Quiz Submitted",
-            recipients=["your_teacher_email@example.com"],  # where to send
-            body=body
-        )
-        mail.send(msg)
-        flash("Quiz submitted! An email has been sent.", "success")
-    except Exception as e:
-        flash(f"Error sending email: {str(e)}", "error")
+    # Count how many are correct
+    for q, correct_value in correct_answers.items():
+        user_answer = request.form.get(q)
+        if user_answer == correct_value:
+            score += 1
 
-    return redirect(url_for('quiz'))
+    # Show a flash message and re‑render the quiz with the score
+    flash(f"You scored {score} out of {total_questions}.", "success")
+    return render_template('quiz.html', score=score, total_questions=total_questions)
 
 if __name__ == '__main__':
     app.run(debug=True)
