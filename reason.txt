@@ -1,5 +1,0 @@
-I am pursuing a passion project at my school that involves creating a website dedicated to mathematics education
-with a focus on algebra and pre-calculus concepts. 
-The project is currently in its initial prototype phase and is accessible at http://127.0.0.1:5000.
-I would appreciate feedback from an educator or mentor regarding the website's design
-functionalityand educational effectiveness, as well as any recommendations for improvement.
