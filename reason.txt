@@ -1,6 +1,5 @@
-I have something called passion project in my school, and we already started.
-It's about doing something that is related to our interests.
-My passion project is to code a website that explains about math, specifically
-algebra and pre-calculus.
-here is my first prototype of my website: http://127.0.0.1:5000.
-I am going to keep improving this prototype into master-piece.
+I am pursuing a passion project at my school that involves creating a website dedicated to mathematics education
+with a focus on algebra and pre-calculus concepts. 
+The project is currently in its initial prototype phase and is accessible at http://127.0.0.1:5000.
+I would appreciate feedback from an educator or mentor regarding the website's design
+functionalityand educational effectiveness, as well as any recommendations for improvement.
