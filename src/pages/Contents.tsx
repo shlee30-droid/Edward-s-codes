@@ -66,7 +66,7 @@ const Contents: React.FC = () => {
         padding: '0 20px',
         perspective: '1500px',
       }}>
-        {sections.map((section, index) => {
+        {sections.map((section) => {
           const quizCount = systemsOfEquations.quizzes.filter(q => q.sectionId === section.id).length;
           
           return (

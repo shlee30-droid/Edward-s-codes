@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { topics } from '../data';
 import type { Section, Quiz, QuizSession } from '../types';
@@ -12,24 +12,18 @@ const Quiz: React.FC = () => {
   const section = topic?.sections.find((s: Section) => s.id === sectionId);
   const sectionQuizzes = topic?.quizzes.filter((q: Quiz) => q.sectionId === sectionId) || [];
 
-  const [session, setSession] = useState<QuizSession | null>(null);
+  // Initialize session state with section quizzes
+  const [session, setSession] = useState<QuizSession>(() => ({
+    topicId: topicId || '1',
+    questions: sectionQuizzes,
+    currentIndex: 0,
+    answers: {},
+  }));
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  useEffect(() => {
-    if (sectionQuizzes.length > 0) {
-      // All 5 questions for this lesson
-      setSession({
-        topicId: topicId || '1',
-        questions: sectionQuizzes,
-        currentIndex: 0,
-        answers: {},
-      });
-    }
-  }, [sectionId, sectionQuizzes.length, topicId]);
-
-  if (!section || !session || sectionQuizzes.length === 0) {
+  if (!section || sectionQuizzes.length === 0) {
     return <div className="page loading text-center" style={{ padding: '4rem' }}>
       <h2>Loading quiz...</h2>
     </div>;
