@@ -1,13 +1,629 @@
+/* Modern 3D Educational Website Styling */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Color Palette - Cyan to Purple Gradient Theme */
+  --primary-cyan: #00d4ff;
+  --primary-purple: #a855f7;
+  --dark-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  --card-bg: rgba(20, 20, 40, 0.7);
+  --card-hover-bg: rgba(30, 30, 60, 0.9);
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-muted: #d0d0d0;
+  
+  /* Shadows and Effects */
+  --shadow-cyan: 0 8px 25px rgba(0, 200, 255, 0.4);
+  --shadow-purple: 0 8px 25px rgba(168, 85, 247, 0.4);
+  --glow-cyan: 0 0 20px rgba(0, 200, 255, 0.3);
+  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
   min-height: 100vh;
+  color: var(--text-primary);
+  overflow-x: hidden;
 }
+
+/* Animated Background Gradient Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0, 200, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(150, 0, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Container with 3D Perspective */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Main Container with 3D Transform */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+/* Header Styling */
+header {
+  background: rgba(10, 10, 30, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 2rem 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: var(--glow-cyan);
+  margin-bottom: 0.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Navigation Links with 3D Effect */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+nav a {
+  color: var(--primary-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background: rgba(0, 200, 255, 0.1);
+  border: 2px solid rgba(0, 200, 255, 0.3);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+nav a:hover {
+  background: rgba(0, 200, 255, 0.2);
+  border-color: var(--primary-cyan);
+  transform: translateY(-2px) translateZ(10px);
+  box-shadow: var(--shadow-cyan);
+}
+
+/* Main Content Area with Glassmorphism */
+main {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+/* Headings with Gradient and 3D Effect */
+h2 {
+  color: var(--primary-cyan);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: var(--glow-cyan);
+  transform: translateZ(20px);
+}
+
+h3 {
+  color: var(--primary-purple);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: var(--glow-purple);
+}
+
+h4 {
+  color: var(--primary-purple);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Card Components with 3D Hover */
+.card {
+  position: relative;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(30, 30, 50, 0.8);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 200, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  transform: translateY(-5px) translateZ(20px);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 15px 40px rgba(0, 200, 255, 0.3);
+  background: var(--card-hover-bg);
+}
+
+/* Lesson Cards with 3D Effect */
+.lesson-card {
+  position: relative;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(30, 30, 50, 0.8);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 200, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.lesson-card:hover {
+  transform: translateY(-8px) scale(1.01) rotateX(2deg);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 15px 40px rgba(0, 200, 255, 0.3);
+  background: var(--card-hover-bg);
+}
+
+.lesson-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Floating Badge Numbers */
+.lesson-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 200, 255, 0.5);
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+  50% { transform: translateY(-10px) rotateZ(5deg); }
+}
+
+.lesson-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--primary-cyan);
+  display: block;
+  margin-bottom: 0.8rem;
+  padding-right: 60px;
+}
+
+.lesson-summary {
+  display: block;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Buttons with Gradient and 3D Effect */
+.btn, button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-purple) 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-cyan);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover, button:hover {
+  transform: translateY(-3px) translateZ(15px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 200, 255, 0.6);
+}
+
+/* Quiz Button with Animation */
+.quiz-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-purple) 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 15px 50px rgba(0, 200, 255, 0.5);
+  transition: all 0.4s ease;
+  transform: translateZ(40px);
+}
+
+.quiz-button:hover {
+  transform: translateZ(60px) scale(1.1);
+  box-shadow: 0 25px 70px rgba(0, 212, 255, 0.7);
+}
+
+/* Input Fields with Glassmorphism */
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  background: rgba(20, 20, 40, 0.8);
+  border: 2px solid rgba(0, 200, 255, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-cyan);
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+  transform: translateZ(5px);
+}
+
+/* Quiz Options with 3D Effect */
+.option-label {
+  position: relative;
+  display: block;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  background: rgba(0, 212, 255, 0.05);
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.option-label:hover {
+  transform: translateX(10px) translateZ(15px);
+  border-color: var(--primary-cyan);
+  background: rgba(0, 212, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.option-label input[type="radio"] {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-cyan);
+}
+
+/* Concept Items with 3D Card Effect */
+.concept-item {
+  position: relative;
+  padding: 1.5rem 1.5rem 1.5rem 4rem;
+  margin-bottom: 1rem;
+  background: rgba(20, 20, 50, 0.8);
+  border-radius: 15px;
+  border-left: 4px solid var(--primary-cyan);
+  transform: translateZ(10px);
+  transition: all 0.3s ease;
+}
+
+.concept-item:hover {
+  transform: translateZ(30px) translateX(10px);
+  border-left-color: var(--primary-purple);
+  box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+.concept-item::before {
+  content: '✓';
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+/* Example Cards with 3D Transform */
+.example-card {
+  position: relative;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  background: rgba(20, 20, 50, 0.9);
+  border-radius: 20px;
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  transform: translateZ(25px);
+  transition: all 0.4s ease;
+}
+
+.example-card:hover {
+  transform: translateZ(50px) rotateY(-5deg);
+  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4);
+}
+
+.example-number {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Pre/Code blocks with styling */
+pre, code {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-cyan);
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+/* Stats Display on Home Page */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+
+.stat-card {
+  padding: 1.5rem 2.5rem;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  min-width: 140px;
+  text-align: center;
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateZ(40px) scale(1.05);
+  box-shadow: var(--shadow-cyan);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Result Display with Glow Effect */
+.result-card {
+  position: relative;
+  padding: 3rem;
+  margin: 3rem 0;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border-radius: 30px;
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  text-align: center;
+  transform: translateZ(50px);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.result-card:hover {
+  transform: translateZ(70px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.4);
+}
+
+.score-display {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.score-number {
+  color: var(--primary-cyan);
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+}
+
+/* Loading and Transition Effects */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  main {
+    padding: 2rem;
+    margin: 2rem 1rem;
+  }
+  
+  nav {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  nav a {
+    padding: 1rem;
+  }
+  
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .lesson-card {
+    padding: 1.5rem;
+  }
+  
+  .score-display {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  main {
+    padding: 1.5rem;
+  }
+  
+  .btn, button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }

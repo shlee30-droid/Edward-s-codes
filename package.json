@@ -15,7 +15,7 @@
     "node": ">=20.11.0",
     "npm": ">=10.0.0"
   },
-  "packageManager": "npm@10",
+  "packageManager": "npm@10.0.0",
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
