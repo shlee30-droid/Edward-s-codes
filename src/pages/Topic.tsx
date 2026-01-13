@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { topics } from '../data';
 import type { Section, Example } from '../types';
@@ -11,6 +11,10 @@ const Topic: React.FC = () => {
   
   const topic = topics[0]; // Systems of Equations
   const section = topic?.sections.find((s: Section) => s.id === sectionId);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [sectionId]);
 
   if (!section) {
     return (
