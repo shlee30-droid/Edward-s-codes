@@ -8,16 +8,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="page home">
-      {/* Hero Section */}
-      <header className="hero text-center">
-        <h2 style={{ fontSize: '3.5rem', marginBottom: '1rem', fontWeight: 900 }}>
+      {/* Hero Section - Compact */}
+      <header className="hero text-center" style={{ paddingTop: '2rem', paddingBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '2.5rem', marginBottom: '0.75rem', fontWeight: 900 }}>
           Systems of Equations
         </h2>
-        <p style={{ fontSize: '1.3rem', color: '#a855f7', marginBottom: '2rem', fontWeight: 600 }}>
+        <p style={{ fontSize: '1.1rem', color: '#a855f7', marginBottom: '1.5rem', fontWeight: 600 }}>
           Master Linear Algebra • {totalLessons} Interactive Lessons • Comprehensive Quizzes
-        </p>
-        <p style={{ fontSize: '1.1rem', color: '#e0e0e0', maxWidth: '700px', margin: '0 auto 2rem', lineHeight: 1.8 }}>
-          A complete course covering fundamental concepts, solution methods, and practical applications of systems of linear equations.
         </p>
         
         {/* Stats Cards */}
@@ -38,15 +35,15 @@ const Home: React.FC = () => {
       </header>
 
       {/* Lessons List */}
-      <section className="lessons-section" style={{ marginTop: '4rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>📚 Complete Course Curriculum</h2>
-        <div className="lessons-grid">
+      <section className="lessons-section" style={{ marginTop: '2rem' }}>
+        <h3 style={{ textAlign: 'center', fontSize: '2rem', marginBottom: '2.5rem', color: '#00ffff', fontWeight: 900 }}>📚 Course Modules</h3>
+        <div className="lessons-grid"style={{ maxWidth: '1200px', margin: '0 auto' }}>
           {topics[0]?.sections.map((section) => (
             <div key={section.id} className="lesson-card">
               <Link to={`/topic/${section.id}`}>
                 <div className="lesson-number">{section.id}</div>
                 <span className="lesson-title">{section.title}</span>
-                <span className="lesson-summary">{section.content}</span>
+                <span className="lesson-summary">{section.content.substring(0, 80)}...</span>
               </Link>
             </div>
           ))}
