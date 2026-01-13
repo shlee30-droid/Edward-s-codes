@@ -176,7 +176,7 @@ class Node3D {
 const MindMap: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const navigate = useNavigate();
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode] = useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
