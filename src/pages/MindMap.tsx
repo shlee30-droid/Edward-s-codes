@@ -103,56 +103,106 @@ class Node3D {
     const ctx = this.ctx;
     const actualSize = this.size * projected.scale * this.scale;
     
-    // Glow effect
-    const gradient = ctx.createRadialGradient(
+    // Enhanced outer glow with multiple layers
+    const outerGradient = ctx.createRadialGradient(
       projected.x, projected.y, 0,
-      projected.x, projected.y, actualSize * 1.5
+      projected.x, projected.y, actualSize * 2
     );
     
     const color = this.lesson.color;
-    gradient.addColorStop(0, color + (isDark ? 'ff' : 'dd'));
-    gradient.addColorStop(0.5, color + (isDark ? 'aa' : '88'));
-    gradient.addColorStop(1, color + '00');
+    outerGradient.addColorStop(0, color + 'ff');
+    outerGradient.addColorStop(0.3, color + (isDark ? 'cc' : 'aa'));
+    outerGradient.addColorStop(0.6, color + (isDark ? '66' : '44'));
+    outerGradient.addColorStop(1, color + '00');
     
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = outerGradient;
     ctx.beginPath();
-    ctx.arc(projected.x, projected.y, actualSize * 1.5, 0, Math.PI * 2);
+    ctx.arc(projected.x, projected.y, actualSize * 2, 0, Math.PI * 2);
     ctx.fill();
     
-    // Core sphere with 3D effect
+    // Middle glow layer for depth
+    const middleGradient = ctx.createRadialGradient(
+      projected.x, projected.y, 0,
+      projected.x, projected.y, actualSize * 1.3
+    );
+    middleGradient.addColorStop(0, color + 'ff');
+    middleGradient.addColorStop(0.5, color + 'dd');
+    middleGradient.addColorStop(1, color + '00');
+    
+    ctx.fillStyle = middleGradient;
+    ctx.beginPath();
+    ctx.arc(projected.x, projected.y, actualSize * 1.3, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Core sphere with enhanced 3D metallic effect
     const coreGradient = ctx.createRadialGradient(
-      projected.x - actualSize * 0.3, projected.y - actualSize * 0.3, 0,
+      projected.x - actualSize * 0.35, projected.y - actualSize * 0.35, 0,
       projected.x, projected.y, actualSize
     );
     coreGradient.addColorStop(0, '#ffffff');
-    coreGradient.addColorStop(0.3, color);
-    coreGradient.addColorStop(1, this.darkenColor(color, 0.5));
+    coreGradient.addColorStop(0.2, color + 'ff');
+    coreGradient.addColorStop(0.6, color);
+    coreGradient.addColorStop(1, this.darkenColor(color, 0.4));
     
     ctx.fillStyle = coreGradient;
     ctx.beginPath();
     ctx.arc(projected.x, projected.y, actualSize, 0, Math.PI * 2);
     ctx.fill();
     
-    // Rim highlight
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
-    ctx.lineWidth = 2 * projected.scale;
+    // Inner shadow for depth
+    const shadowGradient = ctx.createRadialGradient(
+      projected.x + actualSize * 0.3, projected.y + actualSize * 0.3, 0,
+      projected.x, projected.y, actualSize
+    );
+    shadowGradient.addColorStop(0, 'rgba(0, 0, 0, 0.3)');
+    shadowGradient.addColorStop(0.6, 'rgba(0, 0, 0, 0.1)');
+    shadowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    
+    ctx.fillStyle = shadowGradient;
     ctx.beginPath();
     ctx.arc(projected.x, projected.y, actualSize, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Enhanced rim highlight with double ring
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+    ctx.lineWidth = 3 * projected.scale;
+    ctx.beginPath();
+    ctx.arc(projected.x, projected.y, actualSize * 0.95, 0, Math.PI * 2);
     ctx.stroke();
     
-    // Lesson number
+    // Outer ring
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.lineWidth = 1.5 * projected.scale;
+    ctx.beginPath();
+    ctx.arc(projected.x, projected.y, actualSize * 1.05, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    // Lesson number with better contrast
     ctx.fillStyle = 'white';
-    ctx.font = `bold ${Math.floor(16 * projected.scale * this.scale)}px Inter, sans-serif`;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    ctx.shadowBlur = 8 * projected.scale;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.font = `bold ${Math.floor(18 * projected.scale * this.scale)}px 'Space Grotesk', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(String(this.lesson.id), projected.x, projected.y);
+    ctx.shadowBlur = 0;
     
-    // Extra glow when hovered
+    // Animated ring when hovered
     if (this.hovered) {
-      ctx.strokeStyle = color + '88';
-      ctx.lineWidth = 3 * projected.scale;
+      ctx.strokeStyle = color + 'dd';
+      ctx.lineWidth = 4 * projected.scale;
       ctx.beginPath();
-      ctx.arc(projected.x, projected.y, actualSize * 1.2, 0, Math.PI * 2);
+      ctx.arc(projected.x, projected.y, actualSize * 1.25, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Pulsing outer ring
+      const pulseSize = actualSize * (1.4 + Math.sin(Date.now() * 0.005) * 0.1);
+      ctx.strokeStyle = color + '66';
+      ctx.lineWidth = 2 * projected.scale;
+      ctx.beginPath();
+      ctx.arc(projected.x, projected.y, pulseSize, 0, Math.PI * 2);
       ctx.stroke();
     }
   }
@@ -243,19 +293,33 @@ const MindMap: React.FC = () => {
         projected: node.project(width, height, rotationXRef.current, rotationYRef.current)
       })).sort((a, b) => a.projected.z - b.projected.z);
       
-      // Draw connections
-      ctx.strokeStyle = isDarkMode ? 'rgba(120, 119, 198, 0.3)' : 'rgba(102, 126, 234, 0.3)';
-      ctx.lineWidth = 2;
+      // Draw enhanced connections with glow
       for (let i = 0; i < projected.length; i++) {
         const next = (i + 1) % projected.length;
         const p1 = projected[i].projected;
         const p2 = projected[next].projected;
         
-        // Gradient line
+        // Glow layer
+        const glowGradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+        glowGradient.addColorStop(0, projected[i].node.lesson.color + '40');
+        glowGradient.addColorStop(0.5, projected[i].node.lesson.color + '50');
+        glowGradient.addColorStop(1, projected[next].node.lesson.color + '40');
+        
+        ctx.strokeStyle = glowGradient;
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+        
+        // Main gradient line
         const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-        gradient.addColorStop(0, projected[i].node.lesson.color + '60');
-        gradient.addColorStop(1, projected[next].node.lesson.color + '60');
+        gradient.addColorStop(0, projected[i].node.lesson.color + 'aa');
+        gradient.addColorStop(0.5, projected[i].node.lesson.color + 'cc');
+        gradient.addColorStop(1, projected[next].node.lesson.color + 'aa');
         ctx.strokeStyle = gradient;
+        ctx.lineWidth = 3;
         
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
