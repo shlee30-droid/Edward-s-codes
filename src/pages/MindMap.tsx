@@ -224,6 +224,8 @@ const MindMap: React.FC = () => {
     function animate() {
       time++;
       
+      if (!ctx) return;
+      
       // Smooth rotation
       rotationXRef.current += (targetRotationX - rotationXRef.current) * 0.1;
       rotationYRef.current += (targetRotationY - rotationYRef.current) * 0.1;
@@ -281,16 +283,18 @@ const MindMap: React.FC = () => {
       targetRotationY = ((mouseX / width) - 0.5) * 0.5;
       
       // Check hover
-      hoveredNode = null;
+      let currentHoveredNode: Node3D | null = null;
       nodes.forEach(node => {
         const proj = node.project(width, height, rotationXRef.current, rotationYRef.current);
         node.hovered = node.isHovered(mouseX, mouseY, proj);
-        if (node.hovered) hoveredNode = node;
+        if (node.hovered) currentHoveredNode = node;
       });
+      hoveredNode = currentHoveredNode;
       
       // Show tooltip
-      if (hoveredNode && tooltip) {
-        tooltip.textContent = `Lesson ${hoveredNode.lesson.id}: ${hoveredNode.lesson.title}`;
+      if (currentHoveredNode && tooltip) {
+        const node = currentHoveredNode as Node3D;
+        tooltip.textContent = `Lesson ${node.lesson.id}: ${node.lesson.title}`;
         tooltip.style.left = (e.clientX + 20) + 'px';
         tooltip.style.top = (e.clientY - 40) + 'px';
         tooltip.style.opacity = '1';
