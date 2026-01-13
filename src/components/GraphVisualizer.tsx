@@ -128,7 +128,7 @@ export const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
               ctx.lineTo(canvasX, canvasY);
             }
           }
-        } catch (e) {
+        } catch {
           // Skip invalid points
         }
       }
