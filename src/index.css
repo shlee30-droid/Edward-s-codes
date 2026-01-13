@@ -288,10 +288,12 @@ p {
   border: 2px solid transparent;
   background-clip: padding-box;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .lesson-card::before {
@@ -305,7 +307,7 @@ p {
   border-radius: 24px;
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .lesson-card::after {
@@ -316,15 +318,15 @@ p {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.6s ease;
+  transition: left 0.5s ease;
 }
 
 .lesson-card:hover {
-  transform: translateY(-12px) scale(1.02) rotateX(5deg) rotateY(-2deg);
+  transform: translateY(-8px) scale(1.01);
   border-color: rgba(0, 212, 255, 0.6);
   box-shadow: 
-    0 25px 60px rgba(0, 212, 255, 0.4),
-    0 0 60px rgba(168, 85, 247, 0.3),
+    0 20px 50px rgba(0, 212, 255, 0.4),
+    0 0 50px rgba(168, 85, 247, 0.3),
     inset 0 0 30px rgba(0, 212, 255, 0.1);
   background: linear-gradient(135deg, rgba(30, 30, 60, 0.9), rgba(40, 40, 80, 0.9));
 }
@@ -399,12 +401,12 @@ p {
   margin-bottom: 0.8rem;
   padding-right: 70px;
   letter-spacing: -0.5px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .lesson-card:hover .lesson-title {
-  text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
-  transform: translateX(5px);
+  transform: translateX(3px);
 }
 
 .lesson-summary {
@@ -417,7 +419,7 @@ p {
 
 .lesson-card:hover .lesson-summary {
   color: rgba(255, 255, 255, 0.95);
-  transform: translateX(5px);
+  transform: translateX(3px);
 }
 
 /* Buttons with Advanced Gradient and Neon Effect */
