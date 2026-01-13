@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { topics } from '../data';
 import type { Section, Example } from '../types';
+import { GraphVisualizer } from '../components/GraphVisualizer';
 
 const Topic: React.FC = () => {
   const { topicId } = useParams<{ topicId: string }>();
@@ -115,6 +116,79 @@ const Topic: React.FC = () => {
         <h3 style={{ color: '#00d4ff', fontSize: '2rem', marginBottom: '2rem', textAlign: 'center' }}>
           📝 Worked Examples
         </h3>
+        
+        {/* Interactive Graphs for Lesson 7 */}
+        {sectionId === 7 && (
+          <div style={{ marginBottom: '3rem' }}>
+            <GraphVisualizer
+              title="Interactive Example 1: Two Lines Intersecting at (1, 3)"
+              equations={[
+                {
+                  label: 'y = 2x + 1',
+                  equation: (x) => 2 * x + 1,
+                  color: '#00d4ff',
+                },
+                {
+                  label: 'y = -x + 4',
+                  equation: (x) => -x + 4,
+                  color: '#ff006e',
+                },
+              ]}
+              solution={{ x: 1, y: 3 }}
+            />
+            
+            <GraphVisualizer
+              title="Interactive Example 2: Parallel Lines (No Solution)"
+              equations={[
+                {
+                  label: 'y = 2x + 1',
+                  equation: (x) => 2 * x + 1,
+                  color: '#00d4ff',
+                },
+                {
+                  label: 'y = 2x - 3',
+                  equation: (x) => 2 * x - 3,
+                  color: '#a855f7',
+                },
+              ]}
+            />
+            
+            <GraphVisualizer
+              title="Interactive Example 3: Steep vs Gentle Slopes"
+              equations={[
+                {
+                  label: 'y = 3x - 2',
+                  equation: (x) => 3 * x - 2,
+                  color: '#00ff88',
+                },
+                {
+                  label: 'y = 0.5x + 3',
+                  equation: (x) => 0.5 * x + 3,
+                  color: '#ff006e',
+                },
+              ]}
+              solution={{ x: 2, y: 4 }}
+            />
+            
+            <GraphVisualizer
+              title="Interactive Example 4: Horizontal and Vertical Intercepts"
+              equations={[
+                {
+                  label: 'y = -x + 5',
+                  equation: (x) => -x + 5,
+                  color: '#a855f7',
+                },
+                {
+                  label: 'y = x + 1',
+                  equation: (x) => x + 1,
+                  color: '#00d4ff',
+                },
+              ]}
+              solution={{ x: 2, y: 3 }}
+            />
+          </div>
+        )}
+        
         {section.examples.map((example: Example, index: number) => (
           <div key={index} className="example-card">
             <div className="example-number">{index + 1}</div>
