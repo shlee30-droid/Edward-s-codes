@@ -154,37 +154,19 @@ const Topic: React.FC = () => {
             />
             
             <GraphVisualizer
-              title="Interactive Example 3: Steep vs Gentle Slopes"
+              title="Interactive Example 3: Same Line (Infinitely Many Solutions)"
               equations={[
                 {
-                  label: 'y = 3x - 2',
-                  equation: (x) => 3 * x - 2,
-                  color: '#00ff88',
+                  label: 'y = x + 2',
+                  equation: (x) => x + 2,
+                  color: '#00d4ff',
                 },
                 {
-                  label: 'y = 0.5x + 3',
-                  equation: (x) => 0.5 * x + 3,
-                  color: '#ff006e',
-                },
-              ]}
-              solution={{ x: 2, y: 4 }}
-            />
-            
-            <GraphVisualizer
-              title="Interactive Example 4: Horizontal and Vertical Intercepts"
-              equations={[
-                {
-                  label: 'y = -x + 5',
-                  equation: (x) => -x + 5,
-                  color: '#a855f7',
-                },
-                {
-                  label: 'y = x + 1',
-                  equation: (x) => x + 1,
+                  label: '2y = 2x + 4 (same as y = x + 2)',
+                  equation: (x) => x + 2,
                   color: '#00d4ff',
                 },
               ]}
-              solution={{ x: 2, y: 3 }}
             />
           </div>
         )}
