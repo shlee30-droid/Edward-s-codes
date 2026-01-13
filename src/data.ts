@@ -264,7 +264,7 @@ So there is no solution.`,
         ],
       },
       {
-        id: 10,
+        id: 9,
         title: "Choosing the Best Method",
         content:
           "Deciding when to use substitution, elimination, or graphing.",
@@ -787,10 +787,10 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
         explanation:
           "Multiples give infinite solutions, contradictions give none.",
       },
-      // Lesson 10 Quiz
+      // Lesson 9 Quiz
       {
         id: "quiz-46",
-        sectionId: 10,
+        sectionId: 9,
         question: "Substitution is best when:",
         options: [
           "Variables are hard to isolate",
@@ -803,7 +803,7 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
       },
       {
         id: "quiz-47",
-        sectionId: 10,
+        sectionId: 9,
         question: "Elimination is best when:",
         options: [
           "Coefficients can line up",
@@ -816,7 +816,7 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
       },
       {
         id: "quiz-48",
-        sectionId: 10,
+        sectionId: 9,
         question: "Graphing is good for:",
         options: [
           "Exact complicated fractions",
@@ -829,7 +829,7 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
       },
       {
         id: "quiz-49",
-        sectionId: 10,
+        sectionId: 9,
         question:
           "In word problems, the first step is usually:",
         options: [
@@ -843,7 +843,7 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
       },
       {
         id: "quiz-50",
-        sectionId: 10,
+        sectionId: 9,
         question: "After solving, you should:",
         options: [
           "Ignore units",
