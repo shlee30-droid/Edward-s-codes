@@ -13,7 +13,7 @@ export const topics: Topic[] = [
         content: "Introduction to systems of linear equations in two variables.",
         concepts: [
           "A system of equations is a set of two or more equations with the same variables.",
-          "In middle school, we usually work with two equations in x and y.",
+          "In middle school, we usually work with one equation in x and y.",
           "A solution of the system is a pair (x, y) that makes every equation true at the same time.",
           "Graphically, each equation is a line. The solution is the point where the lines intersect.",
         ],
