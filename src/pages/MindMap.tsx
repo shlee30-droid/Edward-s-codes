@@ -340,84 +340,76 @@ const MindMap: React.FC = () => {
   }, [navigate, isDarkMode]);
 
   return (
-    <div className="page mindmap-page" style={{ minHeight: '100vh', paddingBottom: '60px' }}>
+    <div className="page mindmap-page" style={{ 
+      minHeight: '100vh', 
+      paddingBottom: '60px',
+      background: 'transparent',
+    }}>
       {/* Header */}
       <div style={{
         textAlign: 'center',
-        marginBottom: '2rem',
+        marginBottom: '3rem',
         transform: 'translateZ(40px)',
+        paddingTop: '2rem',
       }}>
-        <h2 style={{
-          color: '#00d4ff',
-          fontSize: '3rem',
-          marginBottom: '0.5rem',
-          textShadow: '0 0 30px rgba(0, 212, 255, 0.6)',
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '1rem',
+          padding: '1rem 2.5rem',
+          background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15))',
+          borderRadius: '50px',
+          border: '2px solid rgba(0, 212, 255, 0.4)',
+          marginBottom: '1.5rem',
+          boxShadow: '0 10px 40px rgba(0, 212, 255, 0.3)',
         }}>
-          🌌 3D Mind Map
-        </h2>
+          <span style={{ fontSize: '2rem' }}>🌌</span>
+          <h2 style={{
+            color: '#00d4ff',
+            fontSize: '2.5rem',
+            margin: 0,
+            textShadow: '0 0 30px rgba(0, 212, 255, 0.6)',
+            fontWeight: 900,
+          }}>
+            Interactive 3D Mind Map
+          </h2>
+        </div>
         <p style={{
           textAlign: 'center',
           color: '#e5e5e5',
           fontSize: '1.2rem',
           marginBottom: '2rem',
+          maxWidth: '600px',
+          margin: '0 auto',
         }}>
-          Explore lessons in interactive 3D space
+          Navigate through lessons in an immersive 3D space
         </p>
       </div>
 
-      {/* Canvas Container */}
+      {/* Canvas Container with Modern Design */}
       <div style={{
         position: 'relative',
         width: '100%',
-        height: '85vh',
-        minHeight: '700px',
+        maxWidth: '1400px',
+        height: '75vh',
+        minHeight: '650px',
+        margin: '0 auto',
         perspective: '2500px',
         overflow: 'hidden',
         borderRadius: '30px',
-        background: 'linear-gradient(135deg, rgba(0, 20, 40, 0.9), rgba(20, 0, 40, 0.9))',
-        border: '3px solid rgba(0, 212, 255, 0.5)',
-        boxShadow: 'inset 0 0 100px rgba(0, 212, 255, 0.2), 0 20px 60px rgba(0, 0, 0, 0.5)',
+        background: isDarkMode 
+          ? 'linear-gradient(135deg, rgba(5, 10, 30, 0.95), rgba(15, 5, 35, 0.95))'
+          : 'linear-gradient(135deg, rgba(200, 210, 230, 0.95), rgba(180, 190, 220, 0.95))',
+        border: isDarkMode 
+          ? '3px solid rgba(0, 212, 255, 0.4)'
+          : '3px solid rgba(0, 100, 200, 0.3)',
+        boxShadow: isDarkMode
+          ? 'inset 0 0 100px rgba(0, 212, 255, 0.15), 0 25px 80px rgba(0, 0, 0, 0.6)'
+          : 'inset 0 0 100px rgba(0, 100, 200, 0.1), 0 25px 80px rgba(0, 0, 0, 0.15)',
+        transition: 'all 0.5s ease',
       }}>
-        {/* Day/Night Toggle */}
-        <div
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            width: '60px',
-            height: '60px',
-            background: isDarkMode ? 'linear-gradient(135deg, #FDB813 0%, #FF6B35 100%)' : 'linear-gradient(135deg, #4B0082 0%, #191970 100%)',
-            borderRadius: '12px',
-            cursor: 'pointer',
-            zIndex: 1000,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: isDarkMode ? '0 8px 24px rgba(253, 184, 19, 0.4)' : '0 8px 24px rgba(75, 0, 130, 0.4)',
-            transition: 'all 0.5s ease',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-          }}
-        >
-          {isDarkMode ? (
-            <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
-              <circle cx="12" cy="12" r="5"/>
-              <line x1="12" y1="1" x2="12" y2="3" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="12" y1="21" x2="12" y2="23" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="1" y1="12" x2="3" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="21" y1="12" x2="23" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          ) : (
-            <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          )}
-        </div>
-
+        {/* Day/Night Toggle - Remove since we have global toggle */}
+        
         {/* Canvas */}
         <canvas
           ref={canvasRef}
@@ -431,12 +423,14 @@ const MindMap: React.FC = () => {
           }}
         />
 
-        {/* Tooltip */}
+        {/* Tooltip with Modern Glassmorphism */}
         <div
           id="mindmap-tooltip"
           style={{
             position: 'fixed',
-            background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.95), rgba(168, 85, 247, 0.95))',
+            background: isDarkMode
+              ? 'linear-gradient(135deg, rgba(0, 212, 255, 0.95), rgba(168, 85, 247, 0.95))'
+              : 'linear-gradient(135deg, rgba(0, 150, 255, 0.95), rgba(120, 60, 200, 0.95))',
             color: '#fff',
             padding: '15px 25px',
             borderRadius: '15px',
@@ -454,75 +448,110 @@ const MindMap: React.FC = () => {
         />
       </div>
 
-      {/* Info Panel */}
+      {/* Info Panel with Ultra-Modern Cards */}
       <div style={{
         position: 'relative',
-        marginTop: '2.5rem',
-        padding: '3rem',
-        background: 'linear-gradient(135deg, rgba(0, 20, 40, 0.9), rgba(20, 0, 40, 0.9))',
+        marginTop: '3rem',
+        padding: '3.5rem',
+        background: isDarkMode
+          ? 'linear-gradient(135deg, rgba(5, 10, 30, 0.9), rgba(15, 5, 35, 0.9))'
+          : 'linear-gradient(135deg, rgba(240, 244, 248, 0.9), rgba(226, 232, 240, 0.9))',
         borderRadius: '30px',
-        border: '3px solid rgba(0, 212, 255, 0.5)',
+        border: isDarkMode
+          ? '3px solid rgba(0, 212, 255, 0.4)'
+          : '3px solid rgba(0, 100, 200, 0.3)',
         transform: 'translateZ(30px)',
-        transition: 'all 0.4s ease',
+        transition: 'all 0.5s ease',
         overflow: 'hidden',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(0, 212, 255, 0.1)',
+        maxWidth: '1400px',
+        margin: '3rem auto 0',
+        boxShadow: isDarkMode
+          ? '0 25px 80px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 212, 255, 0.1)'
+          : '0 25px 80px rgba(0, 0, 0, 0.15), inset 0 0 60px rgba(0, 100, 200, 0.05)',
       }}>
         <h3 style={{
-          color: '#00d4ff',
-          fontSize: '2.2rem',
-          marginBottom: '1.5rem',
+          background: 'linear-gradient(135deg, #00d4ff, #ff006e, #a855f7)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          fontSize: '2.5rem',
+          marginBottom: '2.5rem',
           textAlign: 'center',
           textShadow: '0 0 30px rgba(0, 212, 255, 0.7)',
           fontWeight: 900,
+          letterSpacing: '-1px',
         }}>
           🎮 Interactive Controls
         </h3>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '1.5rem',
-          marginTop: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '2rem',
+          marginTop: '2.5rem',
         }}>
           {[
-            { icon: '🖱️', title: 'Rotate', desc: 'Move your mouse to rotate the 3D space' },
-            { icon: '👆', title: 'Hover', desc: 'See lesson details on floating nodes' },
-            { icon: '🎯', title: 'Click', desc: 'Jump directly to any lesson' },
+            { icon: '🖱️', title: 'Rotate', desc: 'Move your mouse to rotate the 3D space', color: '#00d4ff' },
+            { icon: '👆', title: 'Hover', desc: 'See lesson details on floating nodes', color: '#ff006e' },
+            { icon: '🎯', title: 'Click', desc: 'Jump directly to any lesson', color: '#a855f7' },
           ].map((item, idx) => (
             <div
               key={idx}
               style={{
                 position: 'relative',
-                padding: '2rem',
-                background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15))',
-                borderRadius: '20px',
-                border: '2px solid rgba(0, 212, 255, 0.4)',
+                padding: '2.5rem',
+                background: isDarkMode
+                  ? `linear-gradient(135deg, ${item.color}15, ${item.color}08)`
+                  : `linear-gradient(135deg, ${item.color}20, ${item.color}10)`,
+                borderRadius: '24px',
+                border: isDarkMode
+                  ? `2px solid ${item.color}40`
+                  : `2px solid ${item.color}30`,
                 textAlign: 'center',
                 transform: 'translateZ(20px)',
-                transition: 'all 0.4s ease',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 overflow: 'hidden',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+                cursor: 'pointer',
+                boxShadow: isDarkMode
+                  ? `0 10px 30px ${item.color}20`
+                  : `0 10px 30px ${item.color}15`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateZ(40px) translateY(-8px) scale(1.05)';
+                e.currentTarget.style.boxShadow = isDarkMode
+                  ? `0 20px 50px ${item.color}40`
+                  : `0 20px 50px ${item.color}30`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateZ(20px)';
+                e.currentTarget.style.boxShadow = isDarkMode
+                  ? `0 10px 30px ${item.color}20`
+                  : `0 10px 30px ${item.color}15`;
               }}
             >
               <div style={{
-                fontSize: '3.5rem',
-                marginBottom: '1rem',
+                fontSize: '4rem',
+                marginBottom: '1.5rem',
+                filter: `drop-shadow(0 5px 15px ${item.color}80)`,
                 animation: 'iconFloat 3s ease-in-out infinite',
-                filter: 'drop-shadow(0 5px 15px rgba(0, 212, 255, 0.5))',
+                animationDelay: `${idx * 0.2}s`,
               }}>
                 {item.icon}
               </div>
               <p style={{
-                color: '#e5e5e5',
+                color: isDarkMode ? '#e5e5e5' : '#2d3748',
                 fontSize: '1.1rem',
                 lineHeight: 1.8,
               }}>
                 <strong style={{
-                  color: '#00d4ff',
+                  color: item.color,
                   fontWeight: 900,
-                  fontSize: '1.15rem',
+                  fontSize: '1.2rem',
+                  display: 'block',
+                  marginBottom: '0.5rem',
                 }}>
-                  {item.title}:
-                </strong> {item.desc}
+                  {item.title}
+                </strong>
+                {item.desc}
               </p>
             </div>
           ))}
