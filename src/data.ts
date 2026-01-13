@@ -5,7 +5,7 @@ export const topics: Topic[] = [
     id: "systems-of-equations",
     title: "Systems of Equations",
     description:
-      "Master Linear Algebra • 10 Interactive Lessons • Comprehensive Quizzes",
+      "Master Linear Algebra • 9 Interactive Lessons • Comprehensive Quizzes",
     sections: [
       {
         id: 1,
@@ -260,30 +260,6 @@ The equations are the same, so there are infinitely many solutions on that line.
 
 Subtracting gives 0 = 4, which is impossible.
 So there is no solution.`,
-          },
-        ],
-      },
-      {
-        id: 9,
-        title: "Intro to Three-Variable Systems",
-        content:
-          "Gentle introduction to systems with three variables.",
-        concepts: [
-          "A 3 by 3 system has three equations and three variables, often x, y, and z.",
-          "We can still use substitution or elimination, but the work is longer.",
-          "We usually eliminate one variable at a time until we reach a 2 by 2 system.",
-        ],
-        examples: [
-          {
-            heading: "Example 1: Simple 3 by 3",
-            text: `System:
-x + y + z = 6
-x + y - z = 2
-x - y + z = 4
-
-Add the first two equations: 2x + 2y = 8, so x + y = 4.
-One possible solution that works is x = 3, y = 1, z = 2.
-You can check this in all three equations.`,
           },
         ],
       },
@@ -810,67 +786,6 @@ Elimination is efficient because the y coefficients 3 and -3 line up.`,
         correctAnswer: 0,
         explanation:
           "Multiples give infinite solutions, contradictions give none.",
-      },
-      // Lesson 9 Quiz
-      {
-        id: "quiz-41",
-        sectionId: 9,
-        question: "A 3 by 3 system has:",
-        options: [
-          "2 equations, 2 variables",
-          "3 equations, 3 variables",
-          "3 equations, 2 variables",
-          "2 equations, 3 variables",
-        ],
-        correctAnswer: 1,
-        explanation: "Three equations with three unknowns.",
-      },
-      {
-        id: "quiz-42",
-        sectionId: 9,
-        question: "To solve a 3 by 3 system, we often:",
-        options: [
-          "Eliminate one variable at a time",
-          "Graph in 2D only",
-          "Guess solutions",
-          "Ignore one equation",
-        ],
-        correctAnswer: 0,
-        explanation: "Reduce to 2x2, then solve step by step.",
-      },
-      {
-        id: "quiz-43",
-        sectionId: 9,
-        question: "Variables are usually called:",
-        options: ["a, b, c", "x, y, z", "p, q, r", "m, n, p"],
-        correctAnswer: 1,
-        explanation: "Standard notation for 3D systems.",
-      },
-      {
-        id: "quiz-44",
-        sectionId: 9,
-        question: "Three equations represent three:",
-        options: [
-          "Points",
-          "Lines on a plane",
-          "Planes in space",
-          "Circles",
-        ],
-        correctAnswer: 2,
-        explanation: "Each equation is a plane in 3D space.",
-      },
-      {
-        id: "quiz-45",
-        sectionId: 9,
-        question: "A solution (x, y, z) must satisfy:",
-        options: [
-          "At least one equation",
-          "All three equations",
-          "Exactly two equations",
-          "None of the equations",
-        ],
-        correctAnswer: 1,
-        explanation: "Must work in all three equations.",
       },
       // Lesson 10 Quiz
       {
