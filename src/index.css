@@ -494,12 +494,15 @@ p {
   box-shadow: 
     0 20px 60px rgba(0, 212, 255, 0.6),
     0 0 50px rgba(255, 0, 110, 0.4);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: translateZ(50px);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
   border: 3px solid rgba(255, 255, 255, 0.3);
-  animation: gradientShift 8s ease infinite, pulseGlow 2s ease-in-out infinite;
+  animation: gradientShift 8s ease infinite;
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  cursor: pointer;
 }
 
 .quiz-button::before {
@@ -518,10 +521,10 @@ p {
 }
 
 .quiz-button:hover {
-  transform: translateZ(80px) scale(1.12) rotateX(5deg);
+  transform: translateY(-4px) translateZ(0);
   box-shadow: 
-    0 35px 90px rgba(0, 212, 255, 0.8),
-    0 0 80px rgba(255, 0, 110, 0.6),
+    0 25px 70px rgba(0, 212, 255, 0.7),
+    0 0 60px rgba(255, 0, 110, 0.5),
     inset 0 0 40px rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.6);
 }
