@@ -66,13 +66,24 @@ const Quiz: React.FC = () => {
       setIsCorrect(false);
     } else {
       // Quiz complete, navigate to results
+      const finalAnswers = {
+        ...session.answers,
+        [currentQuestion.id]: selectedAnswer,
+      };
+      
+      // Calculate correct count
+      const correctCount = session.questions.reduce((count, question) => {
+        const userAnswer = finalAnswers[question.id];
+        return userAnswer === question.correctAnswer ? count + 1 : count;
+      }, 0);
+      
+      // Convert answers object to array format
+      const answersArray = session.questions.map(q => finalAnswers[q.id] ?? -1);
+      
       navigate(`/result/${sectionId}`, {
         state: {
-          session,
-          answers: {
-            ...session.answers,
-            [currentQuestion.id]: selectedAnswer,
-          },
+          answers: answersArray,
+          correctCount: correctCount,
         },
       });
     }
