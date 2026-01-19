@@ -6,8 +6,6 @@ import Topic from './pages/Topic';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
 import MindMap from './pages/MindMap';
-import Vocabularies from './pages/Vocabularies';
-import Vocabulary from './pages/Vocabulary';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -72,12 +70,6 @@ function App() {
                   fontWeight: 600,
                   transition: 'color 0.3s ease',
                 }}>Lessons</Link>
-                <Link to="/vocabularies" style={{
-                  color: isDarkMode ? 'white' : '#1a202c',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  transition: 'color 0.3s ease',
-                }}>Vocabularies</Link>
               </nav>
               
               {/* Global Theme Toggle */}
@@ -134,8 +126,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/mindmap" element={<MindMap />} />
           <Route path="/contents" element={<Contents />} />
-          <Route path="/vocabularies" element={<Vocabularies />} />
-          <Route path="/vocabulary/:topicId" element={<Vocabulary />} />
           <Route path="/topic/:topicId" element={<Topic />} />
           <Route path="/quiz/:topicId" element={<Quiz />} />
           <Route path="/result/:topicId" element={<Result />} />
