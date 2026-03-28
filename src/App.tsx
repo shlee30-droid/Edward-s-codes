@@ -45,7 +45,7 @@ function App() {
               WebkitTextFillColor: 'transparent',
               textDecoration: 'none',
             }}>
-              Middle School Systems of Equations
+              Mastering Fractions: Core Concepts & Operations
             </Link>
             <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
               <nav style={{

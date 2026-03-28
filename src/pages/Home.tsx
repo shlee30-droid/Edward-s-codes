@@ -11,10 +11,10 @@ const Home: React.FC = () => {
       {/* Hero Section - Compact */}
       <header className="hero text-center" style={{ paddingTop: '2rem', paddingBottom: '1.5rem' }}>
         <h2 style={{ fontSize: '2.5rem', marginBottom: '0.75rem', fontWeight: 900 }}>
-          Systems of Equations
+          Fractions: The Complete Guide
         </h2>
         <p style={{ fontSize: '1.1rem', color: '#a855f7', marginBottom: '1.5rem', fontWeight: 600 }}>
-          Master Linear Algebra • {totalLessons} Interactive Lessons • Comprehensive Quizzes
+            Master Fraction Concepts • {totalLessons} Interactive Lessons • Comprehensive Quizzes
         </p>
         
         {/* Stats Cards */}

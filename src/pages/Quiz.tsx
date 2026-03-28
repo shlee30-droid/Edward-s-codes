@@ -8,7 +8,7 @@ const Quiz: React.FC = () => {
   const navigate = useNavigate();
   const sectionId = parseInt(topicId || '1');
   
-  const topic = topics[0]; // Systems of Equations
+  const topic = topics[0]; // Fractions content
   const section = topic?.sections.find((s: Section) => s.id === sectionId);
   const sectionQuizzes = topic?.quizzes.filter((q: Quiz) => q.sectionId === sectionId) || [];
 
