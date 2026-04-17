@@ -8,6 +8,7 @@ import Result from './pages/Result';
 import MindMap from './pages/MindMap';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Reviews from './pages/Reviews';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -81,6 +82,12 @@ function App() {
                   fontWeight: 600,
                   transition: 'color 0.3s ease',
                 }}>Lessons</Link>
+                <Link to="/reviews" style={{
+                  color: isDarkMode ? 'white' : '#1a202c',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  transition: 'color 0.3s ease',
+                }}>Reviews</Link>
               </nav>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -221,6 +228,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/reviews" element={<Reviews />} />
           <Route path="/mindmap" element={<MindMap />} />
           <Route path="/contents" element={<Contents />} />
           <Route path="/topic/:topicId" element={<Topic />} />
