@@ -6,12 +6,23 @@ import Topic from './pages/Topic';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
 import MindMap from './pages/MindMap';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+  };
 
   return (
-    <Router basename="/Edward-s-codes">
+    <Router basename="/Fractions">
       <div className="app" style={{
         background: isDarkMode 
           ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)'
@@ -72,6 +83,90 @@ function App() {
                 }}>Lessons</Link>
               </nav>
               
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                {isLoggedIn ? (
+                  <>
+                    <span style={{
+                      color: '#00d4ff',
+                      fontWeight: 600,
+                      fontSize: '0.95rem',
+                    }}>
+                      👤 Welcome!
+                    </span>
+                    <button
+                      onClick={handleLogout}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        background: 'rgba(255, 68, 68, 0.2)',
+                        border: '1px solid rgba(255, 68, 68, 0.5)',
+                        borderRadius: '8px',
+                        color: '#ff4444',
+                        cursor: 'pointer',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        transition: 'all 0.3s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 68, 68, 0.3)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 68, 68, 0.2)';
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" style={{
+                      padding: '0.5rem 1rem',
+                      background: 'rgba(0, 212, 255, 0.2)',
+                      border: '1px solid rgba(0, 212, 255, 0.5)',
+                      borderRadius: '8px',
+                      color: '#00d4ff',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                    }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 212, 255, 0.3)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(0, 212, 255, 0.2)';
+                      }}
+                    >
+                      Login
+                    </Link>
+                    <Link to="/signup" style={{
+                      padding: '0.5rem 1rem',
+                      background: 'linear-gradient(135deg, #00d4ff, #a855f7)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      color: 'white',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 15px rgba(0, 212, 255, 0.3)',
+                    }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 212, 255, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 212, 255, 0.3)';
+                      }}
+                    >
+                      Sign Up
+                    </Link>
+                  </>
+                )}
+              </div>
+              
               {/* Global Theme Toggle */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
@@ -124,6 +219,8 @@ function App() {
         {/* Main Content */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/mindmap" element={<MindMap />} />
           <Route path="/contents" element={<Contents />} />
           <Route path="/topic/:topicId" element={<Topic />} />
